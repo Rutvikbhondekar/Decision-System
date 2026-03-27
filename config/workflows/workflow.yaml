@@ -1,0 +1,16 @@
+workflow: "ApplicationApproval"
+description: "Workflow for approving user applications"
+stages:
+  - name: "ValidateInput"
+    type: "system"
+    rules: ["mandatory_fields", "age_check"]
+  - name: "CreditCheck"
+    type: "system"
+    rules: ["credit_score"]
+  - name: "FinalApproval"
+    type: "decision"
+    rules: ["manual_review_if_flagged"]
+    fallback: "ManualReview"
+  - name: "ManualReview"
+    type: "human"
+    rules: []

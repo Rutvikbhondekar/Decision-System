@@ -1,0 +1,24 @@
+rules:
+  - id: "mandatory_fields"
+    type: "presence"
+    fields: ["name", "dob", "email"]
+    error: "Missing required fields"
+
+  - id: "age_check"
+    type: "threshold"
+    field: "age"
+    operator: ">="
+    value: 18
+    error: "Applicant must be 18+"
+
+  - id: "credit_score"
+    type: "threshold"
+    field: "credit_score"
+    operator: ">"
+    value: 700
+    error: "Credit score too low"
+
+  - id: "manual_review_if_flagged"
+    type: "conditional"
+    condition: "flagged == true"
+    action: "route_to_manual_review"
